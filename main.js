@@ -31,7 +31,7 @@ function startWebXR(location){
 	
 	// GLTF
 	let model               = new Gltf2Node({url: location.gltf});
-	model.scale             = [0.1, 0.1, 0.1];
+	model.scale             = [1, 1, 1];
 	scene.addNode(model);
 
 	let all_previous_anchors = new Set();
