@@ -13,7 +13,7 @@ const XR_SESSION_STRING = "immersive-ar";
 
 window.onload = (e)=>{
 	appendLog("Onload");
-	startWebXR("./assets/gltf/sample.glb");// Start WebXR!!
+	startWebXR("./assets/gltf/sample.gltf");// Start WebXR!!
 }
 
 function startWebXR(location){
