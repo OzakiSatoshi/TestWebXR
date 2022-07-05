@@ -67,7 +67,7 @@ const $button = document.getElementById( 'startButton' );
     gltfLoader.load('./assets/gltf/sample.gltf',function(data){
       const gltf = data;
       const obj = gltf.scene;
-      obj.scale.set(0.3,0.3,0.3);　//サイズ
+      obj.scale.set(0.03,0.03,0.03);　//サイズ
       scene.add(obj);
     });
     scene.add( gltfLoader );
