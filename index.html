@@ -12,7 +12,6 @@ canvas{display: block;}
 </head>
 <body>
 
-
 <!-- WebXR を起動するためには、ユーザーが意図して起動するための「ボタン」が必須。-->
 <button type="button" id="startButton">click to start</button>
 <!-- WebXR の描画結果は WebGL の canvas となる。-->
@@ -60,22 +59,15 @@ const $button = document.getElementById( 'startButton' );
 
     scene.add( new THREE.GridHelper( 100, 100 ) );
 
-    const box = new THREE.Mesh(
-      new THREE.BoxBufferGeometry( .2, .2, .2 ),
-      new THREE.MeshNormalMaterial()
-    );
-    scene.add( box );
-
-	//glTFの読み込み
-	const　gltfLoader = new GLTFLoader();
+    //glTFの読み込み
+	const gltfLoader = new GLTFLoader();
 	
-	gltfLoader.load('./assets/gltf/sample.gltf',function(data){
+	gltfLoader.load('./donut.gltf',function(data){
 		const gltf = data;
 		const obj = gltf.scene;
 		scene.add(obj);
-	});	
-	//読み込んだシーンが暗いので、明るくする
-	renderer.outputEncoding = THREE.GammaEncoding;
+	});
+    scene.add( gltfLoader );
 
     // 「デバイスのカメラから取り込まれた現実の風景」の受け先となる、baseLayer を作る。
     const xrWebGLLayer = new XRWebGLLayer( xrSession, gl );
