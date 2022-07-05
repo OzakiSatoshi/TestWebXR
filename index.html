@@ -12,6 +12,7 @@ canvas{display: block;}
 </head>
 <body>
 
+
 <!-- WebXR を起動するためには、ユーザーが意図して起動するための「ボタン」が必須。-->
 <button type="button" id="startButton">click to start</button>
 <!-- WebXR の描画結果は WebGL の canvas となる。-->
@@ -19,6 +20,8 @@ canvas{display: block;}
 
 <script type="module">
 import * as THREE from 'https://unpkg.com/three@0.113.2/build/three.module.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+
 
 const width  = window.innerWidth;
 const height = window.innerHeight;
@@ -31,7 +34,6 @@ const $button = document.getElementById( 'startButton' );
 
   // モードが利用できなければ起動ボタンを無効化
   $button.disabled = ! isArSupported;
-  $button.disabled = 'https://ozakisatoshi.github.io/ARTest/';
 
   // ユーザーが操作して初めて WebXR を起動できる
   $button.addEventListener( 'click', onEnterAR );
@@ -65,6 +67,11 @@ const $button = document.getElementById( 'startButton' );
       new THREE.MeshNormalMaterial()
     );
     scene.add( box );
+
+	// モデル読み込みローダー
+	const loader = new GLTFLoader();
+	// モデルを読み込む
+	const model = await loader.loadAsync(`./assets/sample.glb`);
 
     // 「デバイスのカメラから取り込まれた現実の風景」の受け先となる、baseLayer を作る。
     const xrWebGLLayer = new XRWebGLLayer( xrSession, gl );
