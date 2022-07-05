@@ -62,7 +62,7 @@ const $button = document.getElementById( 'startButton' );
     //glTFの読み込み
 	const gltfLoader = new GLTFLoader();
 	
-	gltfLoader.load('./donut.gltf',function(data){
+	gltfLoader.load('./assets/gltf/sample.gltf',function(data){
 		const gltf = data;
 		const obj = gltf.scene;
 		scene.add(obj);
