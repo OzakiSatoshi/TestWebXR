@@ -71,7 +71,7 @@ const $button = document.getElementById( 'startButton' );
 	// モデル読み込みローダー
 	const loader = new GLTFLoader();
 	// モデルを読み込む
-	const model = await loader.loadAsync(`./assets/sample.glb`);
+	const model = await loader.loadAsync(`assets/sample.glb`);
 
     // 「デバイスのカメラから取り込まれた現実の風景」の受け先となる、baseLayer を作る。
     const xrWebGLLayer = new XRWebGLLayer( xrSession, gl );
