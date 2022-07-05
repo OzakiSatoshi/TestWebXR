@@ -62,13 +62,14 @@ const $button = document.getElementById( 'startButton' );
     scene.add( new THREE.GridHelper( 100, 100 ) );
 
     //glTFの読み込み
-	const gltfLoader = new GLTFLoader();
-	
-	gltfLoader.load('./assets/gltf/sample.gltf',function(data){
-		const gltf = data;
-		const obj = gltf.scene;
-		scene.add(obj);
-	});
+    const gltfLoader = new GLTFLoader();
+    
+    gltfLoader.load('./assets/gltf/sample.gltf',function(data){
+      const gltf = data;
+      const obj = gltf.scene;
+      obj.scale.set(0.3,0.3,0.3);　//サイズ
+      scene.add(obj);
+    });
     scene.add( gltfLoader );
 
     // 「デバイスのカメラから取り込まれた現実の風景」の受け先となる、baseLayer を作る。
