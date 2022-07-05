@@ -52,6 +52,7 @@ const $button = document.getElementById( 'startButton' );
     const renderer = new THREE.WebGLRenderer( { canvas: xrCanvas } );
     renderer.autoClear = false;
     renderer.setSize( width, height );
+    renderer.gammaOutput = true; //暗さ対策で追加
 
     const gl = renderer.getContext();
 
@@ -68,7 +69,7 @@ const $button = document.getElementById( 'startButton' );
       const gltf = data;
       const obj = gltf.scene;
       obj.scale.set(0.03,0.03,0.03); //サイズ
-      obj.position.set(1,-1.5,3); //ポジション
+      obj.position.set(0.1,-0.15,0.3); //ポジション
       scene.add(obj);
     });
     scene.add( gltfLoader );
