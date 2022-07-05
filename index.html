@@ -52,6 +52,7 @@ const $button = document.getElementById( 'startButton' );
     const renderer = new THREE.WebGLRenderer( { canvas: xrCanvas } );
     renderer.autoClear = false;
     renderer.setSize( width, height );
+    renderer.gammaInput = true; //暗さ対策で追加
     renderer.gammaOutput = true; //暗さ対策で追加
 
     const gl = renderer.getContext();
@@ -61,6 +62,7 @@ const $button = document.getElementById( 'startButton' );
     camera.matrixAutoUpdate = false;
 
     scene.add( new THREE.GridHelper( 100, 100 ) );
+    scene.add( new THREE.HemisphereLight( 0x443333, 0x222233, 4 ) );//光源を追加
 
     //glTFの読み込み
     const gltfLoader = new GLTFLoader();
