@@ -20,8 +20,6 @@ canvas{display: block;}
 
 <script type="module">
 import * as THREE from 'https://unpkg.com/three@0.113.2/build/three.module.js';
-import { GLTFLoader } from 'https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/GLTFLoader.js';
-
 
 const width  = window.innerWidth;
 const height = window.innerHeight;
@@ -68,10 +66,16 @@ const $button = document.getElementById( 'startButton' );
     );
     scene.add( box );
 
-	// モデル読み込みローダー
-	const loader = new GLTFLoader();
-	// モデルを読み込む
-	const model = await loader.loadAsync(`/assets/sample.glb`);
+	//glTFの読み込み
+	const　gltfLoader = new GLTFLoader();
+	
+	gltfLoader.load('./assets/gltf/sample.gltf',function(data){
+		const gltf = data;
+		const obj = gltf.scene;
+		scene.add(obj);
+	});	
+	//読み込んだシーンが暗いので、明るくする
+	renderer.outputEncoding = THREE.GammaEncoding;
 
     // 「デバイスのカメラから取り込まれた現実の風景」の受け先となる、baseLayer を作る。
     const xrWebGLLayer = new XRWebGLLayer( xrSession, gl );
