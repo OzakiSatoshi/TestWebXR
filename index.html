@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>=^.^=</title>
+<title>=1=</title>
 <style>
 body {margin: 0;}
 canvas{display: block;}
@@ -12,11 +12,6 @@ canvas{display: block;}
 </head>
 <body>
 
-  <script type="text/javascript">
-    if ((navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0) {
-        location.href = 'https://ozakisatoshi.github.io/ARTest/';
-    }
-    </script>
 
 <!-- WebXR を起動するためには、ユーザーが意図して起動するための「ボタン」が必須。-->
 <button type="button" id="startButton">click to start</button>
@@ -24,7 +19,7 @@ canvas{display: block;}
 <canvas id="xrCanvas"></canvas>
 
 <script type="module">
-import * as THREE from 'https://unpkg.com/three@0.113.2/build/three.module.js';
+  import * as THREE from 'https://unpkg.com/three@0.113.2/build/three.module.js';
 import { OrbitControls } from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'https://unpkg.com/three@0.126.1/examples/jsm/loaders/GLTFLoader.js';
 
@@ -39,12 +34,12 @@ const $button = document.getElementById( 'startButton' );
 
   // モードが利用できなければ起動ボタンを無効化
   $button.disabled = ! isArSupported;
-
+  
   // ユーザーが操作して初めて WebXR を起動できる
   $button.addEventListener( 'click', onEnterAR );
-
+  
   async function onEnterAR() {
-
+    
     $button.style.display = 'none';
 
     // immersive-ar を渡したときは、カメラからの現実の風景を入力することができる。
@@ -60,16 +55,16 @@ const $button = document.getElementById( 'startButton' );
     renderer.setSize( width, height );
     renderer.gammaInput = true; //暗さ対策で追加
     renderer.gammaOutput = true; //暗さ対策で追加
-
+    
     const gl = renderer.getContext();
-
+    
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera();
     camera.matrixAutoUpdate = false;
-
+    
     scene.add( new THREE.GridHelper( 100, 100 ) );
     scene.add( new THREE.HemisphereLight( 0x443333, 0x222233, 4 ) );//光源を追加
-
+    
     //glTFの読み込み
     const gltfLoader = new GLTFLoader();
     
@@ -81,16 +76,16 @@ const $button = document.getElementById( 'startButton' );
       scene.add(obj);
     });
     scene.add( gltfLoader );
-
+    
     // 「デバイスのカメラから取り込まれた現実の風景」の受け先となる、baseLayer を作る。
     const xrWebGLLayer = new XRWebGLLayer( xrSession, gl );
     // updateRenderState を設定していない場合、`xrSession.requestAnimationFrame` が呼ばれないので注意
     xrSession.updateRenderState( { baseLayer: xrWebGLLayer } );
-
+    
     // 「デバイスの姿勢（pose）」の参照先を作る
     // これにより、デバイスの傾きや位置を取得できるようになる。
     const referenceSpace = await xrSession.requestReferenceSpace( 'local' );
-
+    
     // `window.requestAnimationFrame` ではなく、
     // セッションの `requestAnimationFrame` に応じて描画する。
     // 理由は以下の通り。
@@ -106,38 +101,43 @@ const $button = document.getElementById( 'startButton' );
       xrSession.requestAnimationFrame( onDrawFrame );
       // 姿勢を取り出す。行列（matrix）の要素が格納された配列で受け取ることができる。
       const pose = xrFrame.getViewerPose( referenceSpace );
-
+      
       // xrFrame からは、現在のセッション、とベースレイヤーを取り出すこともできる。
       // xrFrame.session === xrSession;
       // xrSession.renderState.baseLayer === xrWebGLLayer;
-
+      
       // 現実の風景をWebGLのフレームバッファーに転写する
       gl.bindFramebuffer( gl.FRAMEBUFFER, xrWebGLLayer.framebuffer );
-
+      
       if ( ! pose ) return;
-
+      
       // if the xrSession is for both right and left eyes, length of views would be 2.
       // if not, length is 1,
       pose.views.forEach( ( view ) => {
-
+        
         const viewport = xrWebGLLayer.getViewport( view );
         renderer.setSize( viewport.width, viewport.height );
-
+        
         camera.matrix.fromArray( view.transform.matrix );
         camera.projectionMatrix.fromArray( view.projectionMatrix );
         camera.updateMatrixWorld( true );
-
+        
         renderer.clearDepth();
         renderer.render( scene, camera );
-
+        
       } );
-
+      
     }
-
+    
   }
-
+  
 } )();
 </script>
+  <script type="text/javascript">
+  if ((navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0) {
+      location.href = 'https://ozakisatoshi.github.io/ARTest/';
+  }
+  </script>
 
 </body>
 </html>
