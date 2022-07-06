@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>=2=</title>
+<title>=3=</title>
 <style>
 body {margin: 0;}
 canvas{display: block;}
@@ -72,7 +72,7 @@ const $button = document.getElementById( 'startButton' );
       const gltf = data;
       const obj = gltf.scene;
       obj.scale.set(0.03,0.03,0.03); //サイズ
-      obj.position.set(0.1,-0.15,0.3); //ポジション
+      obj.position.set(0,-0.15,10); //ポジション 左右・上下・奥行
       scene.add(obj);
     });
     scene.add( gltfLoader );
