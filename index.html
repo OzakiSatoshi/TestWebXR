@@ -12,6 +12,12 @@ canvas{display: block;}
 </head>
 <body>
 
+  <script type="text/javascript">
+    if ((navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0) {
+        location.href = 'https://ozakisatoshi.github.io/ARTest/';
+    }
+    </script>
+
 <!-- WebXR を起動するためには、ユーザーが意図して起動するための「ボタン」が必須。-->
 <button type="button" id="startButton">click to start</button>
 <!-- WebXR の描画結果は WebGL の canvas となる。-->
