@@ -62,7 +62,9 @@ const $button = document.getElementById( 'startButton' );
     const camera = new THREE.PerspectiveCamera();
     camera.matrixAutoUpdate = false;
     
-    scene.add( new THREE.GridHelper( 100, 100 ) );
+    //グリッドヘルパー
+    //scene.add( new THREE.GridHelper( 100, 100 ) );
+
     scene.add( new THREE.HemisphereLight( 0x443333, 0x222233, 4 ) );//光源を追加
     
     //glTFの読み込み
