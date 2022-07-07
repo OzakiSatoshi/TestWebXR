@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>=8=</title>
+<title>=9=</title>
 <style>
 body {margin: 0;}
 canvas{display: block;}
@@ -63,7 +63,7 @@ const $button = document.getElementById( 'startButton' );
     camera.matrixAutoUpdate = false;
     
     //グリッドヘルパー
-    //scene.add( new THREE.GridHelper( 100, 100 ) );
+    scene.add( new THREE.GridHelper( 1, 1 ) );
 
     scene.add( new THREE.HemisphereLight( 0x443333, 0x222233, 4 ) );//光源を追加
     
