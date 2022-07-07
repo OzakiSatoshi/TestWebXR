@@ -3,18 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>=10=</title>
+<title>=11=</title>
 <style>
 body {margin: 0;}
 canvas{display: block;}
-#startButton{font-size: 50px;}
+#startButton{
+  font-size: 50px;
+  margin:0 auto;
+  }
 </style>
 </head>
 <body>
 
 
 <!-- WebXR を起動するためには、ユーザーが意図して起動するための「ボタン」が必須。-->
-<button type="button" id="startButton">click to start</button>
+<button type="button" id="startButton">スタート</button>
 <!-- WebXR の描画結果は WebGL の canvas となる。-->
 <canvas id="xrCanvas"></canvas>
 
